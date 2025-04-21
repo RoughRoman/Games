@@ -26,7 +26,7 @@ jobs:
         aws-region: af-south-1
 
     - name: Change Directory to Infra
-      run: ls
+      run: cd infra
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
