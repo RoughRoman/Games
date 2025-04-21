@@ -22,6 +22,23 @@ resource "aws_apigatewayv2_api" "test_api_gateway" {
     }
 }
 
+resource "aws_iam_role" "test_lambda_role" {
+    name = "games-lambda-role"
+    assume_role_policy = jsonencode({
+        Version = "2012-10-17"
+        Statement = [
+            {
+                Action = "sts:AssumeRole"
+                Principal = {
+                    Service = "lambda.amazonaws.com"
+                }
+                Effect = "Allow"
+                Sid = ""
+            },
+        ]
+    })
+  
+}
 resource "aws_lambda_function" "test_lambda" {
     function_name = "games-lambda-function"
     handler = "index.handler"
@@ -43,7 +60,7 @@ resource "aws_apigatewayv2_integration" "test_integration" {
 }
 
 resource "aws_apigatewayv2_route" "test_route" {
-    api_id = aws_apigatewayv2_api.api_gateway.id
+    api_id = aws_apigatewayv2_api.test_api_gateway.id
     route_key = "GET /games"
-    target = "integrations/${aws_apigatewayv2_integration.lambda_integration.id}"
+    target = "integrations/${aws_apigatewayv2_integration.test_integration.id}"
 }
