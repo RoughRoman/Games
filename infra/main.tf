@@ -43,7 +43,7 @@ resource "aws_lambda_function" "test_lambda" {
     function_name = "games-lambda-function"
     handler = "index.handler"
     runtime = "python3.11"
-    role = aws_iam_role.lambda_execution_role.arn
+    role = aws_iam_role.test_lambda_role.arn
     
     tags = {
         Name = "games-lambda-function"
