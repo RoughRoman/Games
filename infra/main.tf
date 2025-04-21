@@ -12,5 +12,5 @@ terraform {
 }
 
 resource "aws_s3_bucket" "testbucket" {
-    bucket = "testbucket-1234567890"
+    bucket = "testbucket-1234567890-mattysgames"
 }
