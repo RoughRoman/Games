@@ -4,9 +4,13 @@ provider "aws" {
 
 terraform {
     backend "s3" {
-        bucket         = "my-terraform-state-bucket"
+        bucket         = "games-terraform-state-bucket"
         key            = "terraform/state"
         region         = "af-south-1"
-        encrypt        = true
+        encrypt        = false
     }
+}
+
+resource "aws_s3_bucket" "testbucket" {
+    bucket = "testbucket-1234567890"
 }
